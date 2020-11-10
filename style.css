@@ -2,21 +2,6 @@ body{
   background-color:#636e72
 }
 
-.btn{
-  cursor: pointer;
-}
-
-
-body {
-  color:#34495e;
-  
-
-}
-
-
-.clicked{
-  color: #748c8d;
-} 
 
 .form,
 .greetings {
@@ -24,7 +9,7 @@ body {
 }
 
 .showing{
-  display: block;
+  display: block; 
 }
 
 @keyframes fadeIn {
@@ -35,6 +20,7 @@ body {
      opacity: 1;
    }
 }
+
 
 .bgImage{
   position : absolute;
