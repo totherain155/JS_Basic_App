@@ -2,15 +2,19 @@ body{
   background-color:#636e72
 }
 
-
 .form,
-.greetings {
-  display:none;
-}
+ .greetings{
+    display: none;
+ }
 
-.showing{
-  display: block; 
-}
+ .showing{
+   display: block;
+ }
+
+ ul{
+   list-style-type:none;
+ }
+
 
 @keyframes fadeIn {
   from{
