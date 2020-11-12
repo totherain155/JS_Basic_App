@@ -1,24 +1,23 @@
 const body = document.querySelector("body");
 
-const IMG_NUMBER = 5;
 
 function showImage(imageNumber){
-   const image = new Image();  //image 객체 생성
+   const image = new Image();
    image.src = `images/${imageNumber + 1}.jpg`
-   body.appendChild(image);
    image.classList.add("bgImage");
+   body.appendChild(image);
 }
 
-
 function generateRandom(){
-    const number = Math.floor(Math.random() * IMG_NUMBER);
+    const number = Math.floor(Math.random() * 5);
     return number;
 }
 
 
 function init(){
-  const randomNumber = generateRandom();
-  showImage(randomNumber);
+ const randomNumber = generateRandom();
+ showImage(randomNumber);
+
 }
 
 init();
