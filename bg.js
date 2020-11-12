@@ -1,29 +1,24 @@
-const body = document.querySelector('body');
+const body = document.querySelector("body");
 
-const IMG_NUBMER = 3;
+const IMG_NUMBER = 5;
 
-function paintImage(imgNumber){
-    const image = new Image();
-    image.src = `images/${imgNumber + 1}.jpg`;
-    image.classList.add("bgImage");
-    body.appendChild(image); 
-
-
+function showImage(imageNumber){
+   const image = new Image();  //image 객체 생성
+   image.src = `images/${imageNumber + 1}.jpg`
+   body.appendChild(image);
+   image.classList.add("bgImage");
 }
 
-function genRandom(){
-    const number = Math.floor(Math.random() * IMG_NUBMER);
+
+function generateRandom(){
+    const number = Math.floor(Math.random() * IMG_NUMBER);
     return number;
-    
 }
 
 
 function init(){
-     
-    const randomNumber = genRandom();
-    paintImage(randomNumber); 
-
+  const randomNumber = generateRandom();
+  showImage(randomNumber);
 }
-
 
 init();
