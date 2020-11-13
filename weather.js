@@ -1,65 +1,59 @@
+const js_weather = document.querySelector(".js-weather")
 
-const weather = document.querySelector(".js-weather");
+const API_KEY = '37e21d954ac3fbf6e079b260a6df38d3';
+const COORDS_LS = 'location';
 
-const API_KEY ='37e21d954ac3fbf6e079b260a6df38d3';
-const LS_COORDS = 'coords';
 
 function getWeather(lat, lng){
    fetch(
-       `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${API_KEY}
-      `
-   //데이터를 얻을 때 사용하는 방법이다.
-   ).then(function(response){
-      return response.json();
-   })
-   .then(function(json){
-       const temperature = json.main.temp;
-       const place = json.name;
-       weather.innerText = `${temperature} @ ${place}`;
+       `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${API_KEY}&units=metric`
+       ).then(function(response){    //서버세어 온 json 데이터이다.
+          return response.json()  //가져온 데이터를 처리중이라는 의미이다.
+       }).then(function(json){
+           const temperature = json.main.temp;
+           const myPlace = json.name;
+           js_weather.innerText = `${temperature} @ ${myPlace}`;
+       });
+  }
 
-   });
-    
+function saveCoords(location){
+   localStorage.setItem(COORDS_LS, JSON.stringify(location));
 }
 
-function saveCoords(coordsObj){
-    localStorage.setItem(LS_COORDS, JSON.stringify(coordsObj))
-}
-
-
-function handleGeoSuccess(position){
-  const latitude = position.coords.latitude;
-  const longitude = position.coords.longitude;
+function handleSuccess(location){
+ // console.log(location); 
+  const latitude = location.coords.latitude;
+  const longitude = location.coords.longitude;
+  
   const coordsObj = {
       latitude,
       longitude
-  };
-  saveCoords(coordsObj);
-  getWeather(latitude, longitude);
+  }
+   saveCoords(coordsObj); 
+   getWeather(latitude, longitude);
+
 }
 
-function handleGeoErrors(){
-    console.log('you can not find your location')
+function handleFail(){
+  console.log('sorry we can not access your location')
 }
 
-function askForCoords(){
-     navigator.geolocation.getCurrentPosition(handleGeoSuccess, handleGeoErrors);
-       
+function askYourLocation(){
+    navigator.geolocation.getCurrentPosition(handleSuccess, handleFail);
 }
 
 function loadCoords(){
- const loadedCoords = localStorage.getItem(LS_COORDS);
- if(loadedCoords === null ){
-     askForCoords();
- }else{
-     const parsedCoords = JSON.parse(loadedCoords);
-     getWeather(parsedCoords.latitude, parsedCoords.longitude);
- }
+    const loadedCoords =localStorage.getItem(COORDS_LS);
+    if(loadedCoords === null){
+        askYourLocation(); 
+    }else{
+        const parsedCoords = JSON.parse(loadedCoords);
+        getWeather(parsedCoords.latitude, parsedCoords.longitude);
+    }
 }
 
-
 function init(){
-   loadCoords();
-
+ loadCoords();
 }
 
 
