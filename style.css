@@ -4,15 +4,15 @@ body{
 
 .form,
  .greetings{
-    display: none;
+    display: none;  /* 속성을 지워준다 */
  }
 
  .showing{
-   display: block;
+   display: block;   /*속성의 영역을 지정한다 */
  }
 
  ul{
-   list-style-type:none;
+   list-style-type:none; /* ul태그의 dot을 제거한다 */
  }
 
 
@@ -27,13 +27,13 @@ body{
 
 
 .bgImage{
-  position : absolute;
+  position : absolute;  /*absoulute는 절대위치이며 relative는 상대위치이다. */
   top:0;
   left:0;
   width:100%;
   height:100%; 
-  z-index: -1;
-  animation: fadeIn .5s linear
+  z-index: -1; /*숫자가 높을수록 상위의 레이어이다. */
+  animation: fadeIn .5s linear  
 
 }
 
